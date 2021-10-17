@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/sb-microservice-templates.iml" filepath="$PROJECT_DIR$/.idea/sb-microservice-templates.iml" />
-      <module fileurl="file://$PROJECT_DIR$/synch-apis/synch-apis.iml" filepath="$PROJECT_DIR$/synch-apis/synch-apis.iml" />
     </modules>
   </component>
 </project>
