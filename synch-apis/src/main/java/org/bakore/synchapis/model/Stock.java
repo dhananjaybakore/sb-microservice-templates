@@ -11,11 +11,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Stock {
     @Id
     private String symbol;
-
     private double ytdHigh;
     private double ytdLow;
     private double startBuyAtValue;
     private double buyIncrements;
     private double sellIncrements;
     private double startSellAtValue;
+
 }

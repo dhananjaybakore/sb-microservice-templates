@@ -1,0 +1,7 @@
+service:
+  type: LoadBalancer
+architecture: standalone
+auth:
+  database: stock
+  username: mongouser
+  password: DgJ3wfET3o
