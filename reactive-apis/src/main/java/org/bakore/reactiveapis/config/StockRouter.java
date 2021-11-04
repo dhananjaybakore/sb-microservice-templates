@@ -15,8 +15,13 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 @Configuration(proxyBeanMethods = false)
 public class StockRouter {
 
+    private StockService stockService;
+    public StockRouter(StockService stockService){
+        this.stockService = stockService;
+    }
+
     @Bean
-    public RouterFunction<ServerResponse> route(StockService stockService) {
+    public RouterFunction<ServerResponse> route() {
         return RouterFunctions
                 .route(GET("/stock/{symbol}"),   request -> {
                             return ok().body(stockService.getStockBySymbol(request.pathVariable("symbol")), Stock.class);

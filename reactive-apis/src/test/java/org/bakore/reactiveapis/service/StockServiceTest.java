@@ -1,20 +1,30 @@
 package org.bakore.reactiveapis.service;
 
 import org.bakore.reactiveapis.Stock;
+import org.bakore.reactiveapis.repository.StockRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.BDDMockito.given;
 
-@SpringBootTest
+
 class StockServiceTest {
 
-    @Autowired
+    @Mock
+    StockRepository stockRepository;
+
     StockService stockService;
+
+    @BeforeEach
+    public void setup (){
+        MockitoAnnotations.openMocks(this);
+        this.stockService = new StockService(stockRepository);
+    }
 
     @Test
     void givenSymbol_findStockDetails() {
@@ -24,8 +34,7 @@ class StockServiceTest {
         stock.setSellIncrements(3.0);
         stock.setStartBuyAtValue(245.0);
         stock.setStartSellAtValue(256.0);
-        stockService.saveStock(stock).block();
-
+        given(stockRepository.findById("VHT")).willReturn(Mono.just(stock));
         Mono<Stock> stockMono = stockService.getStockBySymbol("VHT");
 
         StepVerifier.create(stockMono)
